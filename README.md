@@ -135,7 +135,7 @@ campus-agent/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/Task-10-Ask-Retrieve-Act-Agent.git
+git clone https://github.com/Dhruvv-77/Task-10-Ask-Retrieve-Act-Agent.git
 cd Task-10-Ask-Retrieve-Act-Agent
 ```
 
