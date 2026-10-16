@@ -350,7 +350,7 @@ export const ChatWindow: React.FC = () => {
               id="chat-input"
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder="Ask about policies, orders, or create a support ticket…"
+              placeholder="Ask about university policies, course details, or student records…"
               disabled={isStreaming}
               autoComplete="off"
               style={{
