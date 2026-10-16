@@ -9,7 +9,11 @@ def responder_node(state: Dict[str, Any]) -> Dict[str, Any]:
     """LangGraph Responder node synthesizing retrieved chunks and tool results."""
     # If final answer was already set (e.g. by guardrail confirmation prompt)
     if state.get("final_answer"):
-        return {}
+        return {
+            "final_answer": state.get("final_answer"),
+            "tools_used": state.get("tools_used") or [],
+            "sources_used": state.get("sources_used") or []
+        }
 
     user_query = state.get("user_query", "")
     plan = state.get("plan", {})

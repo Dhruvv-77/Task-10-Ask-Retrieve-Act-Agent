@@ -59,6 +59,8 @@ async def chat_event_stream(conv_id: str, user_message: str) -> AsyncGenerator[s
 
         for event in agent_app.stream(initial_state):
             for node_name, node_output in event.items():
+                if not node_output or not isinstance(node_output, dict):
+                    continue
                 accumulated_state.update(node_output)
 
                 # Emit Step Events
@@ -87,16 +89,31 @@ async def chat_event_stream(conv_id: str, user_message: str) -> AsyncGenerator[s
                         }
                     })
 
-                elif node_name == "tool_executor" and "tool_results" in node_output:
-                    results = node_output.get("tool_results", [])
-                    for t_res in results:
+                elif node_name == "tool_executor":
+                    if "tool_results" in node_output:
+                        results = node_output.get("tool_results", [])
+                        for t_res in results:
+                            yield sse("step", {
+                                "type": "step",
+                                "step": "tool_call",
+                                "detail": {
+                                    "tool": t_res.get("tool"),
+                                    "input": t_res.get("input"),
+                                    "output": t_res.get("output")
+                                }
+                            })
+                    elif node_output.get("pending_confirmation"):
+                        pending_info = node_output.get("pending_confirmation", {})
                         yield sse("step", {
                             "type": "step",
                             "step": "tool_call",
                             "detail": {
-                                "tool": t_res.get("tool"),
-                                "input": t_res.get("input"),
-                                "output": t_res.get("output")
+                                "tool": pending_info.get("action", "register_course"),
+                                "input": pending_info.get("payload", {}),
+                                "output": {
+                                    "status": "pending_user_confirmation",
+                                    "guardrail": "active"
+                                }
                             }
                         })
 
