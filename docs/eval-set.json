@@ -1,0 +1,54 @@
+[
+  {
+    "id": "eval-01",
+    "query": "What is the minimum attendance requirement for final examinations?",
+    "expected_decision": "retrieve_only",
+    "expected_sources": ["policy-002"],
+    "requires_tool": false
+  },
+  {
+    "id": "eval-02",
+    "query": "Lookup student STU-1001",
+    "expected_decision": "tool_only",
+    "expected_tool": "student_lookup",
+    "expected_tool_arg": "STU-1001"
+  },
+  {
+    "id": "eval-03",
+    "query": "What is the minimum attendance requirement, and is student STU-1001 eligible for final exams?",
+    "expected_decision": "retrieve_and_tool_call",
+    "expected_sources": ["policy-002"],
+    "expected_tool": "student_lookup"
+  },
+  {
+    "id": "eval-04",
+    "query": "What GPA is required for the Dean's Honor List scholarship?",
+    "expected_decision": "retrieve_only",
+    "expected_sources": ["policy-001"]
+  },
+  {
+    "id": "eval-05",
+    "query": "Register student STU-1001 for course CS-301",
+    "expected_decision": "tool_only",
+    "expected_tool": "register_course",
+    "requires_guardrail_confirmation": true
+  },
+  {
+    "id": "eval-06",
+    "query": "What is the policy for quantum interstellar teleportation?",
+    "expected_decision": "retrieve_only",
+    "expected_clarification": true,
+    "notes": "Empty retrieval below 0.65 threshold test"
+  },
+  {
+    "id": "eval-07",
+    "query": "Check course details and available seats for CS-301",
+    "expected_decision": "tool_only",
+    "expected_tool": "course_lookup"
+  },
+  {
+    "id": "eval-08",
+    "query": "Hi, who are you and what can you help me with?",
+    "expected_decision": "answer_directly"
+  }
+]

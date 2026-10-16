@@ -1,0 +1,41 @@
+{
+  "STU-1001": {
+    "student_id": "STU-1001",
+    "name": "Aarav Patel",
+    "major": "Computer Science",
+    "year": "Junior",
+    "credits_completed": 78,
+    "cumulative_gpa": 3.85,
+    "attendance_pct": 88,
+    "academic_standing": "Dean's Honor List",
+    "eligible_for_exams": true,
+    "holds": [],
+    "enrolled_courses": ["CS-301", "MATH-210", "CS-350"]
+  },
+  "STU-2045": {
+    "student_id": "STU-2045",
+    "name": "Priya Sharma",
+    "major": "Electrical Engineering",
+    "year": "Sophomore",
+    "credits_completed": 45,
+    "cumulative_gpa": 1.92,
+    "attendance_pct": 68,
+    "academic_standing": "Academic Probation",
+    "eligible_for_exams": false,
+    "holds": ["Library Fine Due ($12.50)"],
+    "enrolled_courses": ["EE-201", "PHYS-102"]
+  },
+  "STU-3312": {
+    "student_id": "STU-3312",
+    "name": "Rohan Gupta",
+    "major": "Business Administration",
+    "year": "Senior",
+    "credits_completed": 114,
+    "cumulative_gpa": 3.42,
+    "attendance_pct": 94,
+    "academic_standing": "Good Standing",
+    "eligible_for_exams": true,
+    "holds": [],
+    "enrolled_courses": ["MKT-401", "FIN-320", "MGMT-450"]
+  }
+}

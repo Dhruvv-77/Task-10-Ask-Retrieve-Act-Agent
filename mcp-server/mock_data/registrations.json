@@ -1,0 +1,9 @@
+{
+  "REG-STU-1001-CS-301": {
+    "registration_id": "REG-STU-1001-CS-301",
+    "student_id": "STU-1001",
+    "course_code": "CS-301",
+    "status": "Enrolled",
+    "enrolled_at": "2026-10-16T12:00:00Z"
+  }
+}

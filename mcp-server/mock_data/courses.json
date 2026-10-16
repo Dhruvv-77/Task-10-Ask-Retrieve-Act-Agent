@@ -1,0 +1,44 @@
+{
+  "CS-301": {
+    "course_code": "CS-301",
+    "title": "Database Management Systems",
+    "department": "Computer Science",
+    "instructor": "Dr. Alan Turing",
+    "credits": 4,
+    "capacity": 45,
+    "enrolled": 38,
+    "seats_available": 7,
+    "status": "Open",
+    "schedule": "Mon/Wed 10:00 AM - 11:30 AM",
+    "location": "Turing Hall 102",
+    "prerequisites": ["CS-102"]
+  },
+  "MATH-210": {
+    "course_code": "MATH-210",
+    "title": "Linear Algebra & Differential Equations",
+    "department": "Mathematics",
+    "instructor": "Dr. Katherine Johnson",
+    "credits": 3,
+    "capacity": 60,
+    "enrolled": 60,
+    "seats_available": 0,
+    "status": "Waitlist Only",
+    "schedule": "Tue/Thu 02:00 PM - 03:30 PM",
+    "location": "Newton Science Center 205",
+    "prerequisites": ["MATH-101"]
+  },
+  "AI-402": {
+    "course_code": "AI-402",
+    "title": "Machine Learning & Neural Networks",
+    "department": "Computer Science",
+    "instructor": "Dr. Geoffrey Hinton",
+    "credits": 4,
+    "capacity": 30,
+    "enrolled": 24,
+    "seats_available": 6,
+    "status": "Open",
+    "schedule": "Fri 09:00 AM - 12:00 PM",
+    "location": "Ada Lovelace Lab 304",
+    "prerequisites": ["CS-301", "MATH-210"]
+  }
+}

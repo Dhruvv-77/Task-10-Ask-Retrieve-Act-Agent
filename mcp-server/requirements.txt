@@ -1,0 +1,4 @@
+# MCP Server has zero mandatory external dependencies (built with standard library),
+# but requests and pytest are included for testing and client parity.
+requests>=2.31.0
+pytest>=8.0.0
