@@ -128,10 +128,36 @@ campus-agent/
 ## 🚀 Quickstart Guide
 
 ### Prerequisites
-- **Node.js:** v18 or higher
-- **Python:** v3.11 or higher
-- **Docker & Docker Compose**
-- **Ollama:** with `qwen2.5:7b-instruct` installed (`ollama pull qwen2.5:7b-instruct`)
+
+Ensure you have the following installed on your machine before running:
+
+| Requirement | Minimum Version | Installation & Download Link |
+| :--- | :--- | :--- |
+| **Python** | `3.11+` | [python.org/downloads](https://www.python.org/downloads/) |
+| **Node.js** | `v18+` (npm v9+) | [nodejs.org](https://nodejs.org/) |
+| **Docker & Docker Compose** | Docker Desktop 4.x+ | [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) *(Ensure Docker Desktop is running)* |
+| **Ollama** | Latest | [ollama.com/download](https://ollama.com/download) |
+
+---
+
+### 🧠 Required Local LLM Model
+
+CampusAgent is powered by local **Ollama** so that no external cloud APIs or paid tokens are required.
+
+After installing Ollama, pull the recommended reasoning model:
+
+```bash
+# Pull the official high-accuracy reasoning model (~4.7 GB)
+ollama pull qwen2.5:7b-instruct
+```
+
+> **Model Specifications:**
+> - **Model:** `qwen2.5:7b-instruct`
+> - **Parameters:** 7.6 Billion (4-bit quantized `Q4_K_M`)
+> - **Recommended Hardware:** 8 GB+ RAM or 6 GB+ VRAM GPU
+> - **Low-spec Alternative:** If you have limited RAM (under 8 GB), you can pull `ollama pull qwen2.5:3b-instruct` and update `OLLAMA_MODEL=qwen2.5:3b-instruct` in `apps/api/.env`.
+
+---
 
 ### 1. Clone the Repository
 ```bash
@@ -159,12 +185,15 @@ Launch all services concurrently with live streaming output:
 python run.py
 ```
 This automatically:
-- Starts PostgreSQL & Redis containers via Docker
+- Starts PostgreSQL & Redis containers via Docker (with auto-recovery from stale containers)
 - Verifies local Ollama service availability
+- Automatically initializes & indexes the 20 university policy documents into ChromaDB (if not already indexed)
 - Starts the MCP Tool Server on port `9000`
 - Starts the FastAPI Agent Backend on port `8000`
 - Starts the Next.js Web UI on port `3000`
 - Opens `http://localhost:3000` in your default browser
+
+*(Optional: You can also manually re-index the vector database anytime by running `python apps/api/rag/ingest.py`)*
 
 > **To stop all services and release all ports at any time:**
 > ```bash
