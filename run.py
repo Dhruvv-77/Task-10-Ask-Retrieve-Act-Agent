@@ -121,7 +121,11 @@ def main():
     print(f"{YELLOW}[1/5] Starting Docker infrastructure (PostgreSQL & Redis)...{RESET}")
     res = subprocess.run(["docker", "compose", "up", "-d"], cwd=ROOT_DIR)
     if res.returncode != 0:
-        print(f"{RED}Warning: docker compose failed. Please ensure Docker Desktop is running.{RESET}")
+        # Auto-recover from stale/conflicted stopped containers
+        subprocess.run(["docker", "rm", "-f", "capstone-redis", "capstone-postgres"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        res = subprocess.run(["docker", "compose", "up", "-d"], cwd=ROOT_DIR)
+        if res.returncode != 0:
+            print(f"{RED}Warning: docker compose failed. Please ensure Docker Desktop is running.{RESET}")
 
     # 2. Check / Start Ollama
     print(f"{YELLOW}[2/5] Checking Ollama daemon (http://localhost:11434)...{RESET}")
