@@ -142,6 +142,16 @@ def main():
         except Exception as e:
             print(f"{RED}Could not start ollama automatically: {e}. Please run 'ollama serve'.{RESET}")
 
+    # Auto-index ChromaDB if not already indexed
+    chroma_dir = os.path.join(ROOT_DIR, "apps", "api", "chroma_db")
+    if not os.path.exists(chroma_dir) or not os.listdir(chroma_dir):
+        print(f"{YELLOW}[Auto-Index] Indexing 20 university policy documents into ChromaDB...{RESET}")
+        try:
+            subprocess.run([sys.executable, os.path.join(ROOT_DIR, "apps", "api", "rag", "ingest.py")], cwd=os.path.join(ROOT_DIR, "apps", "api"), check=True)
+            print(f"{GREEN}✓ Vector database initialized.{RESET}")
+        except Exception as e:
+            print(f"{RED}Warning: Automatic ChromaDB ingestion failed: {e}{RESET}")
+
     # 3. Start MCP Tool Server (Port 9000)
     print(f"{YELLOW}[3/5] Starting MCP Tool Server on :9000...{RESET}")
     start_process(
