@@ -1,4 +1,4 @@
-name: CampusAgent CI Pipeline
+name: Capstone CI Pipeline
 
 on:
   push:
